@@ -14,7 +14,6 @@ use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
-use frontend\models\ContactForm;
 use frontend\models\Commit;
 
 /**
@@ -90,14 +89,16 @@ class SiteController extends Controller
         $time_zone = date("Y-m-d H:i:s");
 
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
                 $model->created_at = $time_zone;
-                $model->save();
-
-
-                Yii::$app->session->setFlash('success', 'Komentariyizgiz muvofaqiyatli qabul qilindi va tekshirish uchun adminga yuborildi');
+                if ($model->save())
+                {
+                    Yii::$app->session->setFlash('success', 'Komentariyizgiz muvofaqiyatli qabul qilindi va tekshirish uchun adminga yuborildi');
+                }
+                else
+                {
+                    Yii::$app->session->setFlash('error', 'Komment saqlanmadi');
+                }
                 return $this->redirect(['/site/commit']);
-            }
         }
 
         return $this->render('commit', [
@@ -143,15 +144,33 @@ class SiteController extends Controller
     {
         date_default_timezone_set("Asia/Tashkent");
         $time_zone = date("Y-m-d H:i:s");
-
         $model = Commit::findOne($id);
-        $model->status = 1;
-        $model->updated_at = $time_zone;
-        $model->save();
+        
+        if($model->load(Yii::$app->request->post()))
+        {
+            $model->status = 1;
+            $model->updated_at = $time_zone;
+            $model->save();
+             Yii::$app->session->setFlash('success', 'Komentari muvofaqiyatli qabul qilindi');
+            return $this->redirect(['/site/comment-moderation']);
 
+        }
+        else
+        {
+            Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+        }
 
-        Yii::$app->session->setFlash('success', 'Komentari muvofaqiyatli qabul qilindi');
-        return $this->redirect(['/site/comment-moderation']);
+    }
+
+    public function actionFff($id)
+    {
+        // $model = Commit::find()->where(['id' => $id]);
+        $model = Commit::findOne($id);
+        // $model->name = "salom hayot";
+        // $model->save();
+        echo "<pre>";
+        echo print_r($model);
+        echo "</pre>";
     }
 
 

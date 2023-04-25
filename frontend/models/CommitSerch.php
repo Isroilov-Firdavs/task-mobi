@@ -11,6 +11,7 @@ use frontend\models\Commit;
  */
 class CommitSerch extends Commit
 {
+    
     /**
      * {@inheritdoc}
      */

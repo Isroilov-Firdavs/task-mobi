@@ -30,6 +30,7 @@ class Commit extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $verifyCode = 1;
     public function rules()
     {
         return [
@@ -37,6 +38,8 @@ class Commit extends \yii\db\ActiveRecord
             [['message'], 'string'],
             [['status'  ], 'integer'],
             [['name', 'email','topic'], 'string', 'max' => 255],
+            [['message','name', 'topic'], 'filter', 'filter' => 'strip_tags'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -55,7 +58,7 @@ class Commit extends \yii\db\ActiveRecord
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'verifyCode' => 'Verification Code',
+            'verifyCode' => "To'ldiring",
         ];
     }
 }

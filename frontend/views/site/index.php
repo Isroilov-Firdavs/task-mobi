@@ -54,6 +54,11 @@ $this->title = 'Izohlar';
               
             </tbody>
           </table>
+          <div class="row mt-5">
+            <div class="col-lg-3">
+            <a href="<?=Url::to(['/site/commit'])?>" class="btn btn-outline-info btn-oblong tx-11 tx-uppercase tx-mont tx-medium tx-spacing-1 pd-x-30 bd-2">Введите комментарий</a>
+            </div>
+          </div>
         </div><!-- card -->
     </div>
 </div>

@@ -2,7 +2,9 @@
 use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
+// use kartik\form\ActiveForm;
 use yii\captcha\Captcha;
+use kartik\editors\Summernote;
 use yii\widgets\MaskedInput;
 
 
@@ -21,9 +23,9 @@ $this->title = "Add commit"
   </div><!-- br-pageheader -->
   <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
     <h4 class="tx-gray-800 mg-b-5">Form Layouts</h4>
+    <?= Alert::widget() ?>
   </div>
 
-  <?= Alert::widget() ?>
 
   <div class="br-pagebody">
     <div class="br-section-wrapper">
@@ -46,17 +48,19 @@ $this->title = "Add commit"
                         <?= $form->field($model, 'name') ?>
                     </div>
                     <div class="col-6">
-                        <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::class, [
-                                            'mask' => '999-999-9999',
-                                        ]) ?>
+                        <?= $form->field($model, 'phone')->textInput(['type' => 'number'])?>
                     </div>
                     <div class="col-6">
-                        <?= $form->field($model, 'email')->textInput(['type'=>'email']) ?>
+                        <?= $form->field($model, 'email')?>
+                        <!-- ->textInput(['type'=>'email'])  -->
                     </div>
                     <div class="col-12">
                         <?= $form->field($model, 'message')->textarea(array('rows'=>10,'cols'=>5)); ?> 
                     </div>
                     <div class="col-6">
+                        <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
+                            'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                        ]) ?> 
                     </div>
                 </div>
                     <div class="form-layout-foote">

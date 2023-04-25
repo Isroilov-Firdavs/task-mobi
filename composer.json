@@ -22,7 +22,10 @@
         "kartik-v/yii2-number": "dev-master",
         "borales/yii2-phone-input": "*",
         "kekaadrenalin/yii2-module-recaptcha-v3": "*",
-        "manchenkov/yii2-recaptcha3": "^1.0"
+        "manchenkov/yii2-recaptcha3": "^1.0",
+        "kartik-v/yii2-editors": "dev-master",
+        "yiisoft/yii2-bootstrap4": "^2.0",
+        "kartik-v/yii2-widget-activeform": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
