@@ -30,7 +30,7 @@ class Commit extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public $verifyCode = 1;
+
     public function rules()
     {
         return [
@@ -39,7 +39,6 @@ class Commit extends \yii\db\ActiveRecord
             [['status'  ], 'integer'],
             [['name', 'email','topic'], 'string', 'max' => 255],
             [['message','name', 'topic'], 'filter', 'filter' => 'strip_tags'],
-            ['verifyCode', 'captcha'],
         ];
     }
 

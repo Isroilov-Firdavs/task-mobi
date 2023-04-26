@@ -50,7 +50,7 @@ use yii\grid\GridView;
                                 }
                                 elseif ($data->status == 2)
                                 {
-                                    return "<p class='text-danger'>Tasdiqlanmadi</p>";
+                                    return "<p class='text-danger'>Rad etildi</p>";
                                 }
                                 elseif ($data->status == 0)
                                 {

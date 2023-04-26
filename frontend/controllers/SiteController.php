@@ -57,7 +57,7 @@ class SiteController extends Controller
             ],
             'captcha' => [
                 'class' => \yii\captcha\CaptchaAction::class,
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                // 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
@@ -85,11 +85,8 @@ class SiteController extends Controller
     {
         $model = new Commit();
         
-        date_default_timezone_set("Asia/Tashkent");
-        $time_zone = date("Y-m-d H:i:s");
-
         if ($model->load(Yii::$app->request->post())) {
-                $model->created_at = $time_zone;
+                $model->created_at = time();
                 if ($model->save())
                 {
                     Yii::$app->session->setFlash('success', 'Komentariyizgiz muvofaqiyatli qabul qilindi va tekshirish uchun adminga yuborildi');
@@ -105,6 +102,9 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+
+
 
     // One comment page
     public function actionOneCommit($id)
@@ -142,38 +142,22 @@ class SiteController extends Controller
     // Komentarini chop etish
     public function actionSuccessComment($id)
     {
-        date_default_timezone_set("Asia/Tashkent");
-        $time_zone = date("Y-m-d H:i:s");
         $model = Commit::findOne($id);
-        
-        if($model->load(Yii::$app->request->post()))
-        {
-            $model->status = 1;
-            $model->updated_at = $time_zone;
-            $model->save();
-             Yii::$app->session->setFlash('success', 'Komentari muvofaqiyatli qabul qilindi');
-            return $this->redirect(['/site/comment-moderation']);
+        $model->status = 1;
+        $model->updated_at = time();
 
+        if($model->save())
+        {
+            Yii::$app->session->setFlash('success', 'Komentari muvofaqiyatli qabul qilindi');
+            return $this->redirect(['/site/comment-moderation']);
         }
         else
         {
             Yii::$app->session->setFlash('error', 'There was an error sending your message.');
         }
 
+
     }
-
-    public function actionFff($id)
-    {
-        // $model = Commit::find()->where(['id' => $id]);
-        $model = Commit::findOne($id);
-        // $model->name = "salom hayot";
-        // $model->save();
-        echo "<pre>";
-        echo print_r($model);
-        echo "</pre>";
-    }
-
-
     // Komentarini rad etish
     public function actionRejectionComment($id)
     {
@@ -262,7 +246,7 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-            return $this->goHome();
+            return $this->redirect(['/site/login']);
         }
 
         return $this->render('signup', [

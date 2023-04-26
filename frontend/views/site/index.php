@@ -29,6 +29,12 @@ $this->title = 'Izohlar';
 
           <table class="table table-valign-middle mg-b-0">
             <tbody>
+              <?php
+              if(!$commit)
+              {
+                echo "<h1>Hech narsa topilmadi</h1>";
+              }
+              ?>
               <?php 
                 foreach ($commit as $com):
               ?>

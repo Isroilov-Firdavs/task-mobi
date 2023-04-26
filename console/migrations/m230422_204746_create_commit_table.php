@@ -20,8 +20,8 @@ class m230422_204746_create_commit_table extends Migration
             'phone' => $this->string(),
             'message' => $this->text(),
             'status' => $this->integer()->defaultValue(0),
-            'created_at' => $this->string(),
-            'updated_at' => $this->string(),
+            'created_at' => $this->integer(),
+            'updated_at' => $this->integer(),
         ]);
     }
 

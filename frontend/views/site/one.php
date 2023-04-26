@@ -54,7 +54,6 @@ use yii\helpers\Url;
         <div class="media-body mg-l-10">
           <p class="tx-inverse tx-medium mg-b-0"><?=$com->name?></p>
           <p class="tx-12 mg-b-0">
-            <span><?=$com->created_at?></span>
             <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-star"></i></a>
             <a href="" class="mg-l-5 tx-gray-500"><i class="icon ion-android-attach"></i></a>
           </p>

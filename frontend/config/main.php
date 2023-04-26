@@ -19,11 +19,6 @@ return [
             ],
         ],
     ],
-        'reCaptcha' => [
-        'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
-        'siteKeyV3' => '6LfzG7AlAAAAAG5YjlB5QoRdN8fotW7u_35k55oo',
-        'secretV3' => '6LfzG7AlAAAAAJi31Jlhb-WpX_pHeOkwuZrrRm7C',
-        ],
         'request' => [
             'baseUrl'=>'',
             'csrfParam' => '_csrf-frontend',

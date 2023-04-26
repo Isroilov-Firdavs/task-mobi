@@ -235,19 +235,23 @@ AppAsset::register($this);
         </a>
         <div class="dropdown-menu dropdown-menu-header wd-200">
             <ul class="list-unstyled user-profile-nav">
-            <li><a href=""><i class="icon ion-ios-person"></i> Edit Profile</a></li>
-            <li><a href=""><i class="icon ion-ios-gear"></i> Settings</a></li>
+            <li><a href="/site/signup"><i class="icon ion-ios-person"></i> Ro'yxatdan o'tish</a></li>
+            <li><a href="/site/login"><i class="icon ion-ios-person"></i> Kirish</a></li>
+            <!-- <li><a href=""><i class="icon ion-ios-gear"></i> Settings</a></li>
             <li><a href=""><i class="icon ion-ios-download"></i> Downloads</a></li>
             <li><a href=""><i class="icon ion-ios-star"></i> Favorites</a></li>
-            <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li>
+            <li><a href=""><i class="icon ion-ios-folder"></i> Collections</a></li> -->
             <!-- <li><a href=""><i class="icon ion-power"></i> Sign Out</a> </li> -->
                 <?php
+                if(!Yii::$app->user->isGuest)
+                {
                     echo Html::beginForm(['/site/logout'], 'post')
                     . Html::submitButton(
                         '<i class="icon ion-power"></i> Sign Out',
                         ['class' => 'btn btn-link logout text-decoration-none']
                     )
                     . Html::endForm();
+                }
 
                 ?>
             </ul>

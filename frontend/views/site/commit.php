@@ -1,11 +1,9 @@
 <?php
 use common\widgets\Alert;
-use yii\helpers\Html;
+
 use yii\bootstrap5\ActiveForm;
+use yii\bootstrap5\Html;
 // use kartik\form\ActiveForm;
-use yii\captcha\Captcha;
-use kartik\editors\Summernote;
-use yii\widgets\MaskedInput;
 
 
 use borales\extensions\phoneInput\PhoneInput;
@@ -51,16 +49,12 @@ $this->title = "Add commit"
                         <?= $form->field($model, 'phone')->textInput(['type' => 'number'])?>
                     </div>
                     <div class="col-6">
-                        <?= $form->field($model, 'email')?>
-                        <!-- ->textInput(['type'=>'email'])  -->
+                        <?= $form->field($model, 'email')->textInput(['type'=>'email'])?>
                     </div>
                     <div class="col-12">
                         <?= $form->field($model, 'message')->textarea(array('rows'=>10,'cols'=>5)); ?> 
                     </div>
                     <div class="col-6">
-                        <?= $form->field($model, 'verifyCode')->widget(Captcha::class, [
-                            'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-                        ]) ?> 
                     </div>
                 </div>
                     <div class="form-layout-foote">
